@@ -1,34 +1,27 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class StudentRegistrationFormTest {
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
-    }
+public class RegistrationTests extends TestBase{
 
     @Test
     void studentRegistrationForm() {
-        open("/automation-practice-form");
+        String firstName = "Anton";
 
+        open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
-        $("#firstName").setValue("Anton");
+        $("#firstName").setValue(firstName);
         $("#lastName").setValue("LaVey");
         $("#userEmail").setValue("charlie@gmail.com");
 
-        $("#genterWrapper").$(byText("Male")).click();
+        $("#genterWrapper").$(byText("Male")).click();                                                                                                                                                                                                                                                                                                                                             
+
         $("#userNumber").setValue("8800555353");
 
         $("#dateOfBirth-wrapper").click();
@@ -43,6 +36,7 @@ public class StudentRegistrationFormTest {
         $("#uploadPicture").uploadFromClasspath("262.jpg");
 
         $("#currentAddress").setValue("Some address");
+
         $("#stateCity-wrapper").$(byText("Select State")).click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#stateCity-wrapper").$(byText("Select City")).click();
